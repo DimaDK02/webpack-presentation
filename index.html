@@ -54,6 +54,10 @@
                     <img src="https://i.stack.imgur.com/AgFIz.png" alt="Webstorm highlights"
                          width="50%">
                 </div>
+                <aside class="notes">
+                    <p>not use IIFE without polluting global scope</p>
+                    <p>have nice highlights of modules you import in modern IDEs</p>
+                </aside>
             </section>
             <section>
                 But actually, it's possibilities are much larger
@@ -70,22 +74,36 @@
                     <li class="fragment">Bundle</li>
                     <li class="fragment">Minify</li>
                 </ol>
-                <p class="fragment">So actually build your code</p>
+                <p class="fragment">So do all build steps</p>
+                <aside class="notes">
+                    <p>It can</p>
+                    <ol>
+                        <li>Convert you code. e.g. TypeScript to JavaScript</li>
+                        <li>Preprocess styles: sass, styles, less</li>
+                        <li>Bundle all your scripts into one or more files</li>
+                        <li>Minify your scripts, styles and html, so they will load faster</li>
+                    </ol>
+                </aside>
             </section>
             <section>
                 So let's dive into webpack
             </section>
         </section>
         <section>
-            <section>Webpack config</section>
+            <section>
+                <h3>Webpack config</h3>
+                <aside class="notes">
+                    <p>you only have to configure webpack to do all those cool things</p>
+                </aside>
+            </section>
             <section>
                 <h3>It works nice out of the box</h3>
-                <p>with zero config</p>
+                <p>with zero configuration</p>
                 <img src="https://ingilizcebankasi.com/wp-content/uploads/inside.jpg" alt="works out of box"
                      width="40%">
             </section>
             <section>
-                <h3>But it do it's best when configured well</h3>
+                <h3>But it works best when configured well</h3>
                 <p>Example webpack config</p>
                 <pre><code data-trim>
                     {
@@ -122,6 +140,13 @@
                         }
                     }
 	              </code></pre>
+                <aside class="notes">
+                    <p>Entry is the first file, which should be executed</p>
+                    <p>CleanHtmlPlugin cleans old build files</p>
+                    <p>HtmlWebpackPlugin adds index.html file with all need scripts and some tags, you set</p>
+                    <p>Output part gives folder and filename for build files</p>
+                    <p>Next there're loaders for specific files types</p>
+                </aside>
             </section>
             <section>
                 <h3>Basically it consists of</h3>
@@ -130,6 +155,9 @@
                     <li class="fragment">Plugins</li>
                     <li class="fragment">Other minor settings</li>
                 </ol>
+                <aside class="notes">
+                    <p>As you saw, it consists of loaders, plugins and other settings</p>
+                </aside>
             </section>
         </section>
         <section>
@@ -150,6 +178,12 @@
                         return "module.exports = " + JSON.stringify(content);
                     }
                 </code></pre>
+                <aside>
+                    <p>
+                        Here you see almost exact implementation of raw-loader, which just returns file content as
+                        CommonJS module
+                    </p>
+                </aside>
             </section>
             <section>
                 <h2>Some awesome loaders</h2>
@@ -183,6 +217,15 @@
                            target="_blank" rel="noopener noreferrer">more...</a>
                     </li>
                 </ol>
+                <aside class="notes">
+                    <p>I want you to meet some nice loaders</p>
+                    <p>babel-loader, which runs babel</p>
+                    <p>css and style loaders for converting css and adding it to html</p>
+                    <p>file-loader just copies file to build folder and give you public url</p>
+                    <p>image loader minifies images using imagemin</p>
+                    <p>html-minify-loader minifies html</p>
+                    <p>you can find more loaders on webpack site</p>
+                </aside>
             </section>
         </section>
         <section>
@@ -229,6 +272,14 @@
                            target="_blank" rel="noopener noreferrer">more...</a>
                     </li>
                 </ol>
+                <aside class="notes">
+                    <p>Here some nice plugins just for you</p>
+                    <p>HtmlWebpackPlugin adds index.html file with all need scripts and some tags, you set</p>
+                    <p>MiniCssExtract extracts css to external files</p>
+                    <p>SplitChunks split your code into smaller parts. We are covering it later</p>
+                    <p>DotEnv allows you to save all config in .env file and get it in the code</p>
+                    <p>Find more plugins on webpack site</p>
+                </aside>
             </section>
         </section>
         <section>
@@ -248,6 +299,10 @@
                         }
                     </code>
                 </pre>
+                <aside class="notes">
+                    <p>Basically you can just add few entries</p>
+                    <p>Webpack will generate 2 output files. 1 for each entry</p>
+                </aside>
             </section>
             <section>
                 <p>But there's an issue with such configuration</p>
@@ -262,7 +317,8 @@
                 <h3>Split Chunks Plugin</h3>
                 <img src="./images/split-chunks-plugin.png" alt="split chunks plugin configuration result">
                 <aside class="notes">
-                    <p>This plugin prevents such duplication</p>
+                    <p>This plugin is awesome. It automagically extracts common modules into it's own files</p>
+                    <p>So it prevents such duplication</p>
                     <p>It splits your dependencies and your code into smaller chunks</p>
                 </aside>
             </section>
@@ -279,8 +335,8 @@
                             });
                     </code>
                 </pre>
-                <aside>
-                    <p>file is loaded in runtime</p>
+                <aside class="notes">
+                    <p>file is loaded, when this code is executed</p>
                 </aside>
             </section>
             <section>
@@ -297,17 +353,11 @@
                     </code>
                 </pre>
                 <aside class="notes">
-                    <h6>Preload directive has a bunch of differences compared to prefetch:</h6>
-                    <p>
-                        A preloaded chunk starts loading in parallel to the parent chunk.
-                        A prefetched chunk starts after the parent chunk finishes loading.
-                    </p>
+                    <p>Thus we can preload file even before we need it</p>
+                    <p>Differences:</p>
                     <p>
                         A preloaded chunk has medium priority and is instantly downloaded.
                         A prefetched chunk is downloaded while browser is idle.
-                    </p>
-                    <p>
-                        Browser support is different.
                     </p>
                     <p>Using webpackPreload incorrectly can actually hurt performance, so be careful when using it.</p>
                 </aside>
@@ -370,7 +420,7 @@
                 >promises more simple caching config out of the box</a
                 > in webpack 5</p>
                 <aside class="notes">
-                    <p>But make sure to check these articles, if you project consists of a few chunks</p>
+                    <p>But make sure to check these docs and articles, if you project consists of a few chunks</p>
                     <p>Cause things got complicated then</p>
                 </aside>
             </section>
@@ -410,7 +460,7 @@
                 </pre>
             </section>
             <section>
-                <p>For production it's considered better not to expose original content to end users</p>
+                <p>For production it's better not to expose original content to end users</p>
                 <p>So we need another config for production build</p>
             </section>
             <section>
@@ -427,6 +477,9 @@
             <h2>When configured webpack in a right way</h2>
             <img src="https://www.meme-arsenal.com/memes/7c3ae6111b5697646b669c7d137116f2.jpg" alt="meme" width="80%"
                  height="80%">
+            <aside class="notes">
+                <p>webpack configuration is very powerful, but quite complicated</p>
+            </aside>
         </section>
         <section><h2>Thank you very much :)</h2></section>
     </div>
