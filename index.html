@@ -83,42 +83,40 @@
             <section>
                 Example webpack config
                 <pre><code data-trim>
-{
-  entry: './src/index.js',
-  plugins: [
-    new CleanWebpackPlugin(['dist']),
-    new HtmlWebpackPlugin({
-      title: 'YouTube client by DimaDK24',
-    }),
-  ],
-  output: {
-    filename: '[name].[contenthash].js',
-    path: path.resolve(__dirname, 'dist'),
-  },
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-        ],
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: [
-          'babel-loader',
-        ],
-      },
-      {
-        test: /\.(png|jpg|gif|svg|eot|woff|woff2|ttf)$/,
-        use: 'file-loader',
-      },
-    ],
-  },
-};
-	</code></pre>
+                    {
+                        entry: './src/index.js',
+                        plugins: [
+                            new CleanWebpackPlugin(['dist']),
+                            new HtmlWebpackPlugin({
+                                title: 'YouTube client by DimaDK24',
+                            })
+                        ],
+                        output: {
+                            filename: '[name].[contenthash].js',
+                            path: path.resolve(__dirname, 'dist')
+                        },
+                        module: {
+                            rules: [
+                                {
+                                    test: /\.css$/,
+                                    use: [
+                                        'style-loader',
+                                        'css-loader'
+                                    ],
+                                },
+                                {
+                                    test: /\.js$/,
+                                    exclude: /node_modules/,
+                                    use: 'babel-loader'
+                                },
+                                {
+                                    test: /\.(png|jpg|gif|svg|eot|woff|woff2|ttf)$/,
+                                    use: 'file-loader'
+                                }
+                            ]
+                        }
+                    }
+	              </code></pre>
             </section>
             <section>
                 <h3>Basically it consists of</h3>
@@ -139,9 +137,9 @@
             <section>
                 Raw loader
                 <pre><code data-trim>
-                module.exports = function(content) {
-                    return "module.exports = " + JSON.stringify(content);
-                }
+                    module.exports = function(content) {
+                        return "module.exports = " + JSON.stringify(content);
+                    }
                 </code></pre>
             </section>
             <section>
