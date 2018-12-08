@@ -80,7 +80,8 @@
                      width="40%">
             </section>
             <section>
-                Example webpack config
+                <h3>But it do it's best when configured well</h3>
+                <p>Example webpack config</p>
                 <pre><code data-trim>
                     {
                         entry: './src/index.js',
@@ -127,15 +128,19 @@
             </section>
         </section>
         <section>
-            <section>Loaders</section>
             <section>
-                Convert files or chunks.
-                They are implemented as the only function which takes file content and returns it
-                as content of CommonJS module
+                <h3>Loaders</h3>
+                <aside class="notes">
+                    Convert files or chunks.
+                    They are implemented as the only function which takes file content and returns it
+                    as content of CommonJS module
+                </aside>
             </section>
             <section>
                 Raw loader
                 <pre><code data-trim>
+                    // loader.js
+
                     module.exports = function(content) {
                         return "module.exports = " + JSON.stringify(content);
                     }
@@ -144,42 +149,90 @@
             <section>
                 <h2>Some awesome loaders</h2>
                 <ol>
-                    <li class="fragment">babel-loader</li>
-                    <li class="fragment">css-loader</li>
-                    <li class="fragment">style-loader</li>
-                    <li class="fragment">file-loader</li>
-                    <li class="fragment">img-loader</li>
-                    <li class="fragment">autoprefixer-loader</li>
-                    <li class="fragment">html-minify-loader</li>
+                    <li class="fragment">
+                        <a href="https://github.com/babel/babel-loader"
+                           target="_blank" rel="noopener noreferrer">babel-loader</a>
+                    </li>
+                    <li class="fragment">
+                        <a href="https://github.com/webpack-contrib/css-loader"
+                           target="_blank" rel="noopener noreferrer">css-loader</a>
+                    </li>
+                    <li class="fragment">
+                        <a href="https://github.com/webpack-contrib/style-loader"
+                           target="_blank" rel="noopener noreferrer">style-loader</a>
+                    </li>
+                    <li class="fragment">
+                        <a href="https://github.com/webpack-contrib/file-loader"
+                           target="_blank" rel="noopener noreferrer">file-loader</a>
+                    </li>
+                    <li class="fragment">
+                        <a href="https://github.com/vanwagonet/img-loader"
+                           target="_blank" rel="noopener noreferrer">img-loader</a>
+                    </li>
+                    <li class="fragment">
+                        <a href="https://github.com/bestander/html-minify-loader"
+                           target="_blank" rel="noopener noreferrer">html-minify-loader</a>
+                    </li>
+                    <li class="fragment">
+                        <a href="https://webpack.js.org/loaders/"
+                           target="_blank" rel="noopener noreferrer">more...</a>
+                    </li>
                 </ol>
             </section>
         </section>
         <section>
-            <section>Plugins</section>
             <section>
-                Do whatever they want. They can add hooks to build steps and convert all output, like UglifyJSPlugin
-                They can deeply integrate into webpack because they can register hooks within webpacks build system and
-                access (and modify) the compiler, and how it works, as well as the compilation. Therefore, they are more
-                powerful, but also harder to maintain.
-                Plugins work at bundle or chunk level and usually work at the end of the bundle generation process.
-                Plugins can also modify how the bundles themselves are created. Plugins have more powerful control than
-                loaders.
+                <h3>Plugins</h3>
+                <aside class="notes">
+                    <p>Do whatever they want.</p>
+                    <p>They can add hooks to build steps and convert all output, like UglifyJSPlugin</p>
+                    <p>
+                        They can deeply integrate into webpack because they can register hooks within webpack's build
+                        system and access (and modify) the compiler, and how it works, as well as the compilation.
+                    </p>
+                    <p>Therefore, they are more powerful, but also harder to maintain.</p>
+
+                    <p>
+                        Plugins work at bundle or chunk level and usually work at the end of the bundle generation
+                        process.
+                    </p>
+                    <p>Plugins can also modify how the bundles themselves are created.</p>
+                    <p>Plugins have more powerful control than loaders.</p>
+                </aside>
             </section>
             <section>
-                <h2>some awesome plugins</h2>
+                <h2>Some awesome plugins</h2>
                 <ol>
-                    <li class="fragment">HtmlWebpackPlugin</li>
-                    <li class="fragment">MiniCssExtractPlugin</li>
-                    <li class="fragment">SplitChunksPlugin</li>
-                    <li class="fragment">DotenvPlugin</li>
+                    <li class="fragment">
+                        <a href="https://github.com/jantimon/html-webpack-plugin"
+                           target="_blank" rel="noopener noreferrer">HtmlWebpackPlugin</a>
+                    </li>
+                    <li class="fragment">
+                        <a href="https://github.com/webpack-contrib/mini-css-extract-plugin"
+                           target="_blank" rel="noopener noreferrer">MiniCssExtractPlugin</a>
+                    </li>
+                    <li class="fragment">
+                        <a href="https://webpack.js.org/plugins/split-chunks-plugin/"
+                           target="_blank" rel="noopener noreferrer">SplitChunksPlugin</a>
+                    </li>
+                    <li class="fragment">
+                        <a href="https://github.com/mrsteele/dotenv-webpack"
+                           target="_blank" rel="noopener noreferrer">DotenvPlugin</a>
+                    </li>
+                    <li class="fragment">
+                        <a href="https://webpack.js.org/plugins/"
+                           target="_blank" rel="noopener noreferrer">more...</a>
+                    </li>
                 </ol>
             </section>
         </section>
-        <section>Advanced guide for advanced students</section>
+        <section>
+            <h3>Advanced guide for advanced students</h3>
+        </section>
         <section>
             <section>code splitting</section>
             <section>
-                Basically you can just add few entries
+                <h3>Basically you can just add few entries</h3>
                 <pre>
                     <code data-trim>
                         entry: {
@@ -197,10 +250,13 @@
             <section>
                 <img src="https://cdn1.iconfinder.com/data/icons/ilive-by-wwalczyszyn/512/Windows_Live_Mesh.png"
                      alt="live reloading">
-            </section>
-            <section>
-                The best solution for live reloading of dev website when code changes. You just install and run
-                webpack-dev-server and it will do it. Charming simple.
+                <p>
+                    The best solution for live reloading of dev website when code changes. You just install and run
+                    webpack-dev-server and it will do it.
+                </p>
+                <aside class="notes">
+                    Charming simple
+                </aside>
             </section>
             <section>But be careful. That stuff is addictive.</section>
         </section>
@@ -224,30 +280,38 @@
                 </pre>
             </section>
             <section>
-                But make sure to check webpack docs, if you project consists of a few entry points.
-                Cause things got complicated then
+                <p>
+                    But make sure to check <a href="https://webpack.js.org/guides/caching/"
+                                              target="_blank" rel="noopener noreferrer">webpack docs</a
+                >, if you project consists of a few entry points.
+                </p>
+                <p>Cause things got complicated then</p>
+                <!-- TODO: explain complicated things -->
             </section>
         </section>
         <section>
-            <section>Source maps</section>
+            <section>
+                <h3>Source maps</h3>
+                <aside class="notes">
+                    After build, your code entirely changes
+                </aside>
+            </section>
             <section>
                 <pre>
                     <code data-trim>
-                        !function(t){var n={};function e(r){if(n[r])return n[r].exports;var o=n[r]={i:r,l:!1,exports:{}};return t[r]
+                        !function(t){var n={};function e(r){if(n[r])return n[r].exports;var o=n[r]={i:r,l:!1,exports:{}};
                     </code>
                 </pre>
+                <aside class="notes">
+                    <p>It’s probably oneliner with even variable names changed. Cat becomes a or n.</p>
+                    <p>You can’t debug it.</p>
+                </aside>
             </section>
             <section>
                 <img src="images/after-source-maps.png" alt="Original code" class="stretched">
-            </section>
-            <section>
-                After build, your code entirely changes. It’s probably oneliner with even variable names changed. Cat
-                becomes
-                a or n. You can’t debug it. There’s were source maps come in. They link generated code with original
-                one. So you can watch stack trace like if your code didn’t change at all. This can be harmful in
-                production, but nice for development. Also, for production, you should upload source maps to error
-                logging service, like Sentry. So your visitors (and potentially hackers) can’t see source maps, but you
-                could see stacktraces.
+                <aside class="notes">
+                    <p>There’s were source maps come in. They link generated code with original one.</p>
+                </aside>
             </section>
             <section>
                 <h3>To start just add this line to webpack config</h3>
@@ -258,7 +322,12 @@
                 </pre>
             </section>
             <section>
-                But be sure to consult docs for production configuration
+                <p>
+                    But be sure to consult <a href="https://webpack.js.org/configuration/devtool/"
+                                              target="_blank" rel="noopener noreferrer">docs</a> for production
+                    configuration
+                </p>
+                <!-- TODO: explain better -->
             </section>
         </section>
         <section>
