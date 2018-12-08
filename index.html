@@ -249,8 +249,69 @@
                     </code>
                 </pre>
             </section>
-            <section>SplitChunksPlugin</section>
-            <section>Lazy loading with prefetch</section>
+            <section>
+                <p>But there's an issue with such configuration</p>
+                <img src="./images/few-entries.png" alt="Few entries configuration result">
+                <aside class="notes">
+                    <p>Lodash is included in both files</p>
+                    <p>It's death for performance. Same libraries will be loaded many times</p>
+                    <p>That's why we proceed to next config way</p>
+                </aside>
+            </section>
+            <section>
+                <h3>Split Chunks Plugin</h3>
+                <img src="./images/split-chunks-plugin.png" alt="split chunks plugin configuration result">
+                <aside class="notes">
+                    <p>This plugin prevents such duplication</p>
+                    <p>It splits your dependencies and your code into smaller chunks</p>
+                </aside>
+            </section>
+            <section>
+                <h3>Dynamic imports</h3>
+                <pre>
+                    <code data-trim>
+                        import('lodash')
+                            .then({ default: _ } => {
+                                console.log(_.join(['Hello', 'webpack'], ' ')
+                            })
+                            .catch(error => {
+                                console.log(`An error occurred while loading: ${error}`)
+                            });
+                    </code>
+                </pre>
+                <aside>
+                    <p>file is loaded in runtime</p>
+                </aside>
+            </section>
+            <section>
+                <h3>Prefetch/Preload chunks</h3>
+                <pre>
+                    <code data-trim>
+                        import(/* webpackPrefetch: true */'lodash')
+                            .then({ default: _ } => {
+                                console.log(_.join(['Hello', 'webpack'], ' ')
+                            })
+                            .catch(error => {
+                                console.log(`An error occurred while loading: ${error}`)
+                            });
+                    </code>
+                </pre>
+                <aside class="notes">
+                    <h6>Preload directive has a bunch of differences compared to prefetch:</h6>
+                    <p>
+                        A preloaded chunk starts loading in parallel to the parent chunk.
+                        A prefetched chunk starts after the parent chunk finishes loading.
+                    </p>
+                    <p>
+                        A preloaded chunk has medium priority and is instantly downloaded.
+                        A prefetched chunk is downloaded while browser is idle.
+                    </p>
+                    <p>
+                        Browser support is different.
+                    </p>
+                    <p>Using webpackPreload incorrectly can actually hurt performance, so be careful when using it.</p>
+                </aside>
+            </section>
         </section>
         <section>
             <section>dev server with live reloading</section>
