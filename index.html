@@ -267,16 +267,20 @@
         <section>
             <section>
                 <h3>caching</h3>
+                <aside class="notes">
+                    <p>
+                        When you deploy site, it’s important to setup caching to save your content on client systems for
+                        faster loading next time.
+                    </p>
+                    <p>
+                        But if you add awesome brand new feature or fix annoying bug you want users to
+                        pick up fresh code immediately.
+                    </p>
+                    <p>Fortunately webpack helps us a lot in this mission.</p>
+                </aside>
             </section>
             <section>
-                When you deploy site, it’s important to setup caching to save your content on client systems for faster
-                loading next time. But if you add awesome brand new feature or fix annoying bug you want users to pick
-                up fresh code immediately. Fortunately webpack helps us a lot in this mission.
-            </section>
-            <section>
-                Typical caching algorithm links cached content with file names. So the easiest way to refresh it —
-                change file name. We don’t have to do it manually, webpack will do it for us. We only have to configure
-                it in right way. To start we can just add
+                <p>To start we can just add</p>
                 <pre>
                     <code data-trim>
                         output: {
@@ -284,8 +288,14 @@
                         }
                     </code>
                 </pre>
+                <aside class="notes">
+                    Typical caching algorithm links cached content with file names. So the easiest way to refresh it —
+                    change file name. We don’t have to do it manually, webpack will do it for us. We only have to
+                    configure it in right way.
+                </aside>
             </section>
             <section>
+                <p>But in real webpack config caching is a bit complicated</p>
                 <p>Read more:</p>
                 <p><a href="https://webpack.js.org/guides/caching/"
                       target="_blank" rel="noopener noreferrer">webpack docs</a></p>
