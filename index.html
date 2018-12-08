@@ -322,12 +322,17 @@
                 </pre>
             </section>
             <section>
-                <p>
-                    But be sure to consult <a href="https://webpack.js.org/configuration/devtool/"
-                                              target="_blank" rel="noopener noreferrer">docs</a> for production
-                    configuration
-                </p>
-                <!-- TODO: explain better -->
+                <p>For production it's considered better not to expose original content to end users</p>
+                <p>So we need another config for production build</p>
+            </section>
+            <section>
+                <p>Generate source maps, but do not link them with original files</p>
+                <pre>
+                    <code data-trim>
+                        dev-tool: hidden-source-map
+                    </code>
+                </pre>
+                <p>You could upload them to your error reporting service</p>
             </section>
         </section>
         <section>
