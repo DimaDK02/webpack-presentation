@@ -340,7 +340,7 @@
                 </aside>
             </section>
             <section>
-                <h3>Prefetch/Preload chunks</h3>
+                <h3>Prefetch chunks</h3>
                 <pre>
                     <code data-trim>
                         import(/* webpackPrefetch: true */'lodash')
@@ -354,11 +354,6 @@
                 </pre>
                 <aside class="notes">
                     <p>Thus we can preload file even before we need it</p>
-                    <p>Differences:</p>
-                    <p>
-                        A preloaded chunk has medium priority and is instantly downloaded.
-                        A prefetched chunk is downloaded while browser is idle.
-                    </p>
                     <p>Using webpackPreload incorrectly can actually hurt performance, so be careful when using it.</p>
                 </aside>
             </section>
